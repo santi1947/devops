@@ -1,0 +1,374 @@
+
+100336231613
+
+
+9002445417
+archivaldatalakepoc
+gen2 : azuredatalakegen
+datawarehouse : azuredatawarehouse
+servername : azuredataserver1s
+santi /  Aceg#1809
+
+https://docs.microsoft.com/en-us/azure/sql-data-warehouse/load-data-wideworldimportersdw
+
+
+03344021100
+
+https://www.myhomeopathic.com/html/info_disease/eyes-symptoms-treatment-cure.asp?DTitle=Eyes,%20Affections%20of
+
+http://localhost:8889/notebooks/Untitled10.ipynb
+=========================================================
+https://hernandezpaul.wordpress.com/2016/01/24/apache-spark-installation-on-windows-10/
+
+set JAVA_HOME=C:/Program Files/Java/jdk1.8.0_111
+set HADOOP_HOME=C:/winutils
+set SPARK_HOME=C:/spark
+
+
+https://dzone.com/articles/running-apache-kafka-on-windows-os
+Zookeeper start  :
+
+C:\zookeeper-3.4.10\bin>zkserver
+
+cd C:\zookeeper-3.4.10\bin
+zkserver
+Kafka :
+
+start :
+cd C:\kafka_2.11-0.10.0.1\bin\windows\
+kafka-server-start.bat C:\kafka_2.11-0.10.0.1\config\server.properties
+
+stop :
+cd C:\kafka_2.11-0.10.0.1\bin\windows\
+kafka-server-stop.bat
+
+
+
+
+cd C:\kafka_2.11-0.10.0.1
+start Kafka server :
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+Creating topics ::
+cd C:\kafka_2.11-0.10.0.1\bin\windows
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+Creating a Producer and Consumer to Test Server ::
+cd C:\kafka_2.11-0.10.0.1\bin\windows
+To start a producer type the following command:
+kafka-console-producer.bat --broker-list localhost:9092 --topic test < C:/kafka_2.11-0.10.0.1/data/one.csv
+kafka-console-producer.bat --broker-list localhost:9092 --topic test < F:/data/sales.csv
+Now start a consumer by typing the following command:
+kafka-console-consumer.bat --zookeeper localhost:2181 --topic test
+
+Some Other Useful Commands :
+cd C:\kafka_2.11-0.10.0.1\bin\windows
+List Topics: kafka-topics.bat --list --zookeeper localhost:2181
+Describe Topic: kafka-topics.bat --describe --zookeeper localhost:2181 --topic [Topic Name]
+Read messages from beginning: kafka-console-consumer.bat --zookeeper localhost:2181 --topic [Topic Name] --from-beginning
+Delete Topic: kafka-run-class.bat kafka.admin.TopicCommand --delete --topic [topic_to_delete] --zookeeper localhost:2181
+
+
+
+==========================================================
+datastax-community-64bit_2.2.8  -- cassandra
+
+https://github.com/datastax/spark-cassandra-connector/blob/master/doc/14_data_frames.md
+
+CREATE KEYSPACE sensoranalytics WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+use sensoranalytics ;
+CREATE TABLE sensoranalytics.countrystats (date text ,country text,count int, PRIMARY KEY (date, country));
+CREATE TABLE sensoranalytics.statestats (date text ,state text,count int, PRIMARY KEY (date, state));
+CREATE TABLE sensoranalytics.citystats (date text ,city text,status text,count int, PRIMARY KEY (date, city,status));
+
+
+select * from sensoranalytics.countrystats;
+select * from sensoranalytics.statestats;
+select * from sensoranalytics.citystats; 
+
+/*
+//val topicpMap = topics.split(",").map((_, numThreads.toInt)).toMap
+// read data from  cassandra
+val cassandraRDD = ssc.cassandraTable("sparkdata", "sparktable").select("sno", "pname")
+val dstream = new ConstantInputDStream(ssc, cassandraRDD)    
+dstream.foreachRDD{ rdd => 
+// any action will trigger the underlying cassandra query, using collect to have a simple output
+println(rdd.collect.mkString("\n")) 
+  } 
+
+ /// write data in cassandra
+val lines = KafkaUtils.createStream(ssc, "localhost:2181", "spark-streaming-consumer-group", Map("test" -> 5)).map(_._2)
+lines.print();
+lines.map(line => { val arr = line.split(","); (arr(0).toInt, arr(1)) }).saveToCassandra("sparkdata", "sparktable", SomeColumns("sno", "pname"))
+*/
+
+Configuring Apache Zepplin for Cassandra::
+https://www.youtube.com/watch?v=PuxfIrRC1Ds
+
+Starting Apache Zeppelin with Command Line:
+If you are using Windows : bin\zeppelin.cmd
+
+After successful start, visit http://localhost:8080 with your web browser.
+
+=============================================================
+
+spark-shell --jars C:/spark/jars/*   --conf spark.cassandra.connection.host=127.0.0.1 
+import com.datastax.spark.connector._
+import org.apache.spark.sql.cassandra._
+
+val data = sc.cassandraTable("test", "kv")
+println(data.count)
+
+https://www.tutorialspoint.com/tutorialslibrary.htm
+https://github.com/deanwampler/spark-scala-tutorial/blob/master/README.markdown
+https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb
+
+https://www.youtube.com/watch?v=xNAD6cBKyaA
+
+val collection = sc.parallelize(Seq(("key3", 3), ("key4", 4)))
+
+collection.saveToCassandra("test", "kv", SomeColumns("key", "value")) 
+
+========= MySQL =======
+username / password : root/Bbb@877659
+port : 3306
+========= pyspark ===========
+http://www.jbencina.com/blog/2017/07/15/installing-pyspark-jupyter-notebook-windows/
+
+PYSPARK_PYTHON=C:\python\python.exe
+PYSPARK_DRIVER_PYTHON= C:\python\Scripts\jupyter.exe
+PYSPARK_DRIVER_PYTHON_OPTS=notebook
+
+https://www.datacamp.com/community/tutorials/apache-spark-tutorial-machine-learning
+================================================================
+ https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_reference/content/starting_hdp_services.html
+ 2.3 sandbox you will create the login and password when you first login. In your case it is root/hadoop
+
+----------- vmware --------- http://192.168.62.128:8080  http://192.168.62.128:4200/ http://192.168.62.128:8088/cluster http://192.168.62.128:4040
+https://crackedroot.com/vmware-workstation-pro-crack/
+
+
+root / Bbb@877659
+http://192.168.223.128:8080 ::: maria_dev/maria_dev
+http://192.168.223.128:4200  ::: root / Bbb@877659
+all link : http://192.168.223.128:8888
+jobtracker :: http://192.168.223.128:8088/cluster
+spark URL ::  http://192.168.223.128:4040
+
+http://192.168.223.128:9995/#/
+
+putty log in : 192.168.223.128: 2222
+
+
+# mysql -u root -p
+Enter password: hadoop
+su - hdfs
+hdfs dfs -chown -R sqoop:hdfs /user/root
+
+spark-submit   --class com.spark.poc.wordCount \
+--master yarn-client \ 
+/tmp/poc/wordCount.jar
+
+
+--------- vitual box----------- 
+ 
+ 
+ 
+log in : 
+http://127.0.0.1:8080 ::: maria_dev/maria_dev
+http://127.0.0.1:4200/ ::: root / Bbb@877659
+all link : 127.0.0.1:8888
+zeppelin :: http://127.0.0.1:9995/#/
+jobtracker :: http://127.0.0.1:8088/cluster
+spark URL :: http://127.0.0.1:4040
+
+putty log in :127.0.0.1 : 2222
+
+admin login to restart any service::::
+ambari-admin-password-reset
+http://127.0.0.1:8080/cluster :: admin/admin
+
+6.7. Apache Spark Streaming | Kafka Hands-On
+https://www.youtube.com/watch?v=DiBwxzM9aAo
+kafka_hands_on.sh
+https://gist.github.com/singhabhinav/1003a2a47318d85a222b4f51c3f79cf7
+spark_streaming_kafka_integration.sh 
+https://gist.github.com/singhabhinav/0ab4f33f5da16363ef9bba5b057c6465
+https://github.com/cloudxlab/bigdata.git
+
+localhost:8888 
+127.0.0.1:18888
+
+ssh root@localhost -v
+ssh root@127.0.0.1 -p 22
+
+GIT::::
+scp -P 2222 F:/Pampa/d5841.pdf root@localhost:/tmp/santi
+
+
+scp -P 22 /tmp/santi/SparkCa.jar santi@127.0.0.1:F:/Pampa/
+
+
+scp -P 2222 F:/Pampa/d5841.pdf root@127.0.0.1:/root/
+
+
+ssh root@127.0.0.1 -P 2222
+sudo apt-get install openssh-server
+
+run coomand :::
+spark-submit --class com.spark.streaming.StreamingMain_V1  --master yarn-client  /tmp/santi/SparkCa.jar
+
+
+ #input-dir = "C:/Users/Santi Nath Dey/workspace1/SparkCa/Data/Input/one_1.txt"
+    input-dir = "/tmp/poc/data/input/one.csv"
+    #output-dir = "C:/Users/Santi Nath Dey/workspace1/SparkCa/Data/Output/"
+    output-dir = "/tmp/poc/data/output/"
+
+http://localhost:1080/
+http://127.0.0.1:8088
+
+spark-shell --jars <>
+
+Cloudera :
+https://www.youtube.com/watch?v=5Ijhj2IcdFQ
+su /cloudera
+
+PATH=$PATH:/opt/scala-2.11.7/bin:/opt/sbt/bin
+
+
+Accounts
+Once you launch the VM, you are automatically logged in as the cloudera user. The account details are:
+username: cloudera
+password: cloudera
+The cloudera account has sudo privileges in the VM. The root account password is cloudera.
+The root MySQL password (and the password for other MySQL user accounts) is also cloudera.
+Hue and Cloudera Manager use the same credentials.
+
+
+C:\Users\Santi Nath Dey>cd Anaconda2
+
+C:\Users\Santi Nath Dey\Anaconda2> where python
+C:\Users\Santi Nath Dey\Anaconda2\python.exe
+
+C:\Users\Santi Nath Dey\Anaconda2> where conda
+INFO: Could not find files for the given pattern(s).
+
+C:\Users\Santi Nath Dey\Anaconda2>cd Scripts
+
+C:\Users\Santi Nath Dey\Anaconda2\Scripts> where conda
+C:\Users\Santi Nath Dey\Anaconda2\Scripts\conda.exe
+C:\Users\Santi Nath Dey\Anaconda2\Scripts>jupyter notebook
+
+
+mapr::
+Once you have all the necessary software installed, log in to the MapR Sandbox as the user mapr. Password is mapr. Copy the folder spark_music_demo to the /user/mapr folder (cp -R spark_music_demo /user/mapr) .
+
+data ::
+https://www.basketball-reference.com/leagues/NBA_2016_per_game.html
+
+
+######### My SQL connectivity #####
+
+mySQL : MYSQL WorkBench
+port_number :  3306
+password : root / Santi@1947
+
+
+#import findspark # not necessary
+#findspark.init() # not necessary
+from pyspark import SparkConf, SparkContext, sql
+from pyspark.sql import SparkSession
+sc = SparkSession.builder.getOrCreate()
+sqlContext = sql.SQLContext(sc)
+source_df = sqlContext.read.format('jdbc').options(
+    url='jdbc:mysql://127.0.0.1:3306/sakila?serverTimezone=UTC',
+    driver='com.mysql.jdbc.Driver', #com.mysql.jdbc.Driver
+    dbtable='store',
+    user='root',
+    password='Santi@1947').load()
+print (source_df)
+source_df.show()
+
+################# Spark ML ########
+
+from pyspark.sql import SparkSession
+spark = SparkSession \
+.builder \
+.appName("Python Spark SQL basic example") \
+.config("spark.some.config.option", "some-value") \
+.getOrCreate()
+
+df=spark.read.csv(r'C:\Users\Santi Nath Dey\Desktop\POC\input\user_click_seq.csv',header=True,sep=',')
+print("#################################################################")
+print df.printSchema()
+df.createOrReplaceTempView("test")
+re=spark.sql("select * from test where Gender  =='Male' order by sl_no ")
+print(re.show())
+print("################################################################")
+re.repartition(1).write.csv('C:\Users\Santi Nath Dey\Desktop\POC\output\mycsv.csv')
+
+
+------- Spark ML -----------------------
+
+https://medium.com/rahasak/k-means-clustering-with-apache-spark-cab44aef0a16
+
+
+from pyspark import SparkContext
+from pyspark.ml import Pipeline
+from pyspark.ml.classification import LogisticRegression
+from pyspark.ml.feature import HashingTF, Tokenizer
+from pyspark.sql import Row, SQLContext
+
+
+#if _name_ == "_main_":
+#sc = SparkContext(appName="SimpleTextClassificationPipeline")
+#sqlContext = SQLContext(sc)
+LabeledDocument = Row('id', 'text', 'label')
+    # Prepare training documents, which are labeled.
+training = sc.parallelize([(0, "a b c d e spark", 1.0),
+                               (1, "b d", 0.0),
+                               (2, "spark f g h", 1.0),
+                               (3, "hadoop mapreduce", 1.0)]) \
+        .map(lambda x: LabeledDocument(*x)).toDF()
+
+training.show()
+
+
+# Configure an ML pipeline, which consists of tree stages: tokenizer, hashingTF, and lr.
+tokenizer = Tokenizer(inputCol="text", outputCol="words")
+hashingTF = HashingTF(inputCol=tokenizer.getOutputCol(), outputCol="features")
+lr = LogisticRegression(maxIter=10, regParam=0.001)
+pipeline = Pipeline(stages=[tokenizer, hashingTF, lr])
+
+    # Fit the pipeline to training documents.
+model = pipeline.fit(training)
+
+    # Prepare test documents, which are unlabeled.
+Document = Row("id", "text")
+test = sc.parallelize([(4, "spark i j k"),
+                           (5, "l m n"),
+                           (6, "spark hadoop spark"),
+                           (7, "apache hadoop"),
+                      (8,"hadoop mapreduce")]) \
+        .map(lambda x: Document(*x)).toDF()
+
+    # Make predictions on test documents and print columns of interest.
+prediction = model.transform(test)
+selected = prediction.select("id", "text", "prediction")
+for row in selected.collect():
+ print(row)
+
+#sc.stop()
+
+########## Local #####
+
+from pyspark import SparkConf, SparkContext, sql
+from pyspark.sql import Row
+
+sc = SparkContext.getOrCreate()
+lines = sc.textFile("file:///F:/Tutorial/ML/Spark_Python_Do_Big_Data_Analytics-master/auto-data.csv")
+datalines = lines.filter(lambda x: "FUELTYPE" not in x)
+datalines.count()
+################
+
+
