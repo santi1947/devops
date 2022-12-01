@@ -25,3 +25,6 @@ data warehouse optimization { Query Optimization plan }:
 
 which layer I need to do performance tune.
 
+
+
+
