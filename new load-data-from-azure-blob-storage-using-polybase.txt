@@ -1,0 +1,27 @@
+
+
+https://github.com/uglide/azure-content/blob/master/articles/sql-data-warehouse/sql-data-warehouse-load-from-sql-server-with-polybase.md
+
+
+https://www.c-sharpcorner.com/article/external-tables-in-sql-server-2016-or-2017-and-work-with-polybase/
+
+CREATE EXTERNAL FILE FORMAT parquetfile1  
+WITH (  
+    FORMAT_TYPE = PARQUET,  
+    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'  
+);  
+
+http://www.dataarchitect.cloud/azure-sql-data-warehouse-loading-patterns-and-strategies/
+
+-- stag & main schema tables are created under data warehouse or SQL DB
+
+data warehouse optimization { Query Optimization plan }: 
+***Need the client queries  .On top this query we can do the performance tune.
+
+1. Hash key genaration on table level.
+2. Partition by column {where clause }
+3. Index column { joining column and composite key }
+4. Column stats update.
+
+which layer I need to do performance tune.
+
