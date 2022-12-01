@@ -1,5 +1,5 @@
 
-
+ABC DFG GHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 https://github.com/uglide/azure-content/blob/master/articles/sql-data-warehouse/sql-data-warehouse-load-from-sql-server-with-polybase.md
 
 
@@ -24,4 +24,7 @@ data warehouse optimization { Query Optimization plan }:
 4. Column stats update.
 
 which layer I need to do performance tune.
+
+
+
 
