@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVault2SAS",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://Azure47SAS.vault.azure.net/"
+		}
+	}
+}
