@@ -1,0 +1,17 @@
+{
+	"name": "lS_AzureBlobStorage1947",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"sasUri": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault2SAS",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SAsToken19"
+			}
+		}
+	}
+}
