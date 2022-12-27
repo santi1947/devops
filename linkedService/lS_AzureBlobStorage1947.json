@@ -10,7 +10,7 @@
 					"referenceName": "AzureKeyVault2SAS",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "SAsToken19"
+				"secretName": "ScSasv1"
 			}
 		}
 	}
